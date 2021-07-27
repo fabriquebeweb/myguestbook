@@ -1,5 +1,5 @@
 <?
-include_once('send.php');
+include_once('service.php');
 class custom_widget extends WP_Widget {
     
     function __construct() {
@@ -24,8 +24,8 @@ class custom_widget extends WP_Widget {
             <form action="" method="post">
                 <div>
                     <H4 for="message">Thx, for rating the restaurant !</H4>
-                    <input name="widget" type="text" placeholder="Enter your message..."/> <br>
-                    <input name="widget" type="text" placeholder="Enter your name..."/> <br>
+                    <input name="message" type="text" placeholder="Enter your message..." required/> <br>
+                    <input name="name" type="text" placeholder="Enter your name..."/> <br>
                 </div> 
                 <button type="submit">Send</button>
             </form> <br>
