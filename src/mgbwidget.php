@@ -46,7 +46,7 @@ function getMessage() {
     $messages = $wpdb->get_results( $sql );
     if( $messages ) { 
       foreach( $messages as $message ) { 
-        echo    '<div style="border: 1px solid grey; padding-left: 2em;">
+        echo    '<div style="border: 1px solid grey; padding-left: 1em;">
                 <p> <strong> nom:  </strong>' . $message->name . '</p> 
                 <p> <strong> message: </strong> ' . $message->message.' </p> 
                 <p> <strong> date: </strong> ' . $message->time.' </p>
