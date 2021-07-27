@@ -14,14 +14,12 @@ class Widget extends WP_Widget
     public function widget($args, $instance)
     {
         $title = apply_filters('mgbwidget_title', $instance['title']);
-        // before and after widget arguments are defined by themes
+
         echo $args['before_widget'];
-        if ( ! empty( $title ) )
-        echo $args['before_title'] . $title . $args['after_title'];
-        
-        // This is where you run the code and display the output
-        echo __( 'Hello, World! ', 'wpb_widget_domain' );
-        getMessage();
+        if ( ! empty( $title ) ) echo $args['before_title'] . $title . $args['after_title'];
+
+        self::getMessages();
+
         echo $args['after_widget'];
     }
 
@@ -40,21 +38,24 @@ class Widget extends WP_Widget
         <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label> 
         <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
         </p>
-        <?php 
+        <?php
     }
 
-}
+    private static function getMessages()
+    {
+        $messages = Database::list("SELECT * FROM ? WHERE state = true ORDER BY time DESC LIMIT 5");
 
-// Get the 5 last messages from db
-function getMessage()
-{
-    $messages = Database::list("SELECT * FROM ? WHERE state = true ORDER BY time DESC LIMIT 5");
-
-    if ( $messages )
-    { 
-        foreach ( $messages as $message )
+        if ( $messages )
         { 
-            echo "<p>{$message->name} {$message->message}</p>";
-        }
+            foreach ( $messages as $message )
+            { 
+                echo '<div style="border: 1px solid grey; padding-left: 1em;">
+                <p> <strong> nom:  </strong>' . $message->name . '</p> 
+                <p> <strong> message: </strong> ' . $message->message.' </p> 
+                <p> <strong> date: </strong> ' . $message->time.' </p>
+                </div>';
+            }
+        }    
     }
+
 }
