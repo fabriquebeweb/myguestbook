@@ -10,6 +10,7 @@ class Plugin
     public static function activate()
     {
         Repository::init();
+        Page::create();
     }
 
     public static function load()
@@ -31,7 +32,7 @@ class Plugin
 
     public static function widgets()
     {
-        register_widget( new MGB_Widget() );
+        register_widget( new Widget() );
     }
 
 }

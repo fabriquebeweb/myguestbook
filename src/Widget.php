@@ -3,12 +3,12 @@
 namespace MyGuestBook;
 use WP_Widget;
 
-class MGB_Widget extends WP_Widget
+class Widget extends WP_Widget
 {
 
     public function __construct() 
     {
-        parent::__construct('Mgbwidget', 'myguestbook widget');
+        parent::__construct('MyGuestBook_Widget', 'MyGuestBook Widget');
     }
 
     public function widget($args, $instance)
@@ -30,10 +30,10 @@ class MGB_Widget extends WP_Widget
     {
         if ( isset( $instance[ 'title' ] ) ) {
             $title = $instance[ 'title' ];
-        }
-        else {
+        } else {
             $title = __( 'New title', 'wpb_widget_domain' );
         }
+
         // Widget admin form
         ?>
         <p>
@@ -48,9 +48,7 @@ class MGB_Widget extends WP_Widget
 // Get the 5 last messages from db
 function getMessage()
 {
-    global $wpdb;
-    $sql = "SELECT * FROM ap_myguestbook ORDER BY time DESC LIMIT 5";
-    $messages = $wpdb->get_results( $sql );
+    $messages = Repository::findAll("SELECT * FROM ? ORDER BY time DESC LIMIT 5");
     if ( $messages )
     { 
         foreach ( $messages as $message )
