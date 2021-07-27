@@ -9,7 +9,7 @@ class Plugin
 
     public static function activate()
     {
-        Repository::init();
+        Database::init();
         Page::create();
     }
 
@@ -18,16 +18,7 @@ class Plugin
 
     public static function admin()
     {
-        // Crée et ajoute le menu à l'interface admin
-        add_menu_page(
-            'MyGuestBook Settings',
-            'MyGuestBook',
-            'manage_options',
-            'myguestbook',
-            '',
-            'dashicons-awards',
-            null
-        );
+        Admin::load();
     }
 
     public static function widgets()

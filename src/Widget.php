@@ -48,12 +48,13 @@ class Widget extends WP_Widget
 // Get the 5 last messages from db
 function getMessage()
 {
-    $messages = Repository::findAll("SELECT * FROM ? ORDER BY time DESC LIMIT 5");
+    $messages = Database::list("SELECT * FROM ? WHERE state = true ORDER BY time DESC LIMIT 5");
+
     if ( $messages )
     { 
         foreach ( $messages as $message )
         { 
-            echo '<p> ' . $message->name . ' ' . $message->message.' </p>';
+            echo "<p>{$message->name} {$message->message}</p>";
         }
     }
 }

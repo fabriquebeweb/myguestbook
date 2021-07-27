@@ -22,9 +22,10 @@ class ComposerStaticInitd925f220e4560ad4baea78664690e20f
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'MyGuestBook\\Admin' => __DIR__ . '/../..' . '/src/Admin.php',
+        'MyGuestBook\\Database' => __DIR__ . '/../..' . '/src/Database.php',
         'MyGuestBook\\Page' => __DIR__ . '/../..' . '/src/Page.php',
         'MyGuestBook\\Plugin' => __DIR__ . '/../..' . '/src/Plugin.php',
-        'MyGuestBook\\Repository' => __DIR__ . '/../..' . '/src/Repository.php',
         'MyGuestBook\\Widget' => __DIR__ . '/../..' . '/src/Widget.php',
     );
 
