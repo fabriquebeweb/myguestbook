@@ -5,6 +5,9 @@ namespace MyGuestBook;
 class Admin
 {
 
+    /**
+     * Create Admin page menus
+     */
     public static function load()
     {
         $count = self::count();
@@ -30,26 +33,43 @@ class Admin
         );
     }
 
+    /**
+     * Display main menu and clear all messages notifications
+     */
     public static function menu()
     {
         Database::query("UPDATE ? SET notification = false WHERE id > 0");
         
-        echo '<p>1</p>';
-        echo '<p>2</p>';
-        echo '<p>3</p>';
-        echo '<p>4</p>';
-        echo '<p>5</p>';
+        foreach(self::messages() as $message)
+        {
+            echo <<<EOT
+                <div style="border: 1px solid grey; padding: 1em; margin: 3em;">
+                    <p> <strong> NOTE: </strong> $message->message </p> 
+                    <p> <strong> NAME: </strong> $message->name </p> 
+                    <p> <strong> DATE: </strong> $message->time </p>
+                </div>
+            EOT;
+        }
     }
 
+    /**
+     * Display secondary About page
+     */
     public static function about()
     {
-        echo '<p>about</p>';
+        echo '<p>About page ( si tu lis ceci, prends le ticket prévu pour la page "À propos" sur Trello ! )</p>';
     }
 
     private static function count()
     {
         $count = Database::result("SELECT COUNT(*) FROM ? WHERE notification = true");
         return ($count) ? "<span class=\"awaiting-mod\">${count}</span>" : null;
+    }
+
+    private static function messages()
+    {
+        $messages = Database::list("SELECT * FROM ? ORDER BY time DESC LIMIT 5");
+        return ($messages) ? $messages : [];
     }
 
 }

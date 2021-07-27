@@ -18,7 +18,14 @@ class Widget extends WP_Widget
         echo $args['before_widget'];
         if ( ! empty( $title ) ) echo $args['before_title'] . $title . $args['after_title'];
 
-        self::getMessages();
+        foreach(self::messages() as $message)
+        {
+            echo '<div style="border: 1px solid grey; padding-left: 1em;">
+            <p> <strong> nom:  </strong>' . $message->name . '</p> 
+            <p> <strong> message: </strong> ' . $message->message.' </p> 
+            <p> <strong> date: </strong> ' . $message->time.' </p>
+            </div>';
+        }
 
         echo $args['after_widget'];
     }
@@ -41,21 +48,10 @@ class Widget extends WP_Widget
         <?php
     }
 
-    private static function getMessages()
+    private static function messages()
     {
         $messages = Database::list("SELECT * FROM ? WHERE state = true ORDER BY time DESC LIMIT 5");
-
-        if ( $messages )
-        { 
-            foreach ( $messages as $message )
-            { 
-                echo '<div style="border: 1px solid grey; padding-left: 1em;">
-                <p> <strong> nom:  </strong>' . $message->name . '</p> 
-                <p> <strong> message: </strong> ' . $message->message.' </p> 
-                <p> <strong> date: </strong> ' . $message->time.' </p>
-                </div>';
-            }
-        }    
+        return ($messages) ? $messages : [];
     }
 
 }
