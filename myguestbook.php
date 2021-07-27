@@ -12,12 +12,6 @@ Version: 1
 Author URI: ∞∞∞∞∞∞∞∞∞∞∞∞∞
 */
 
-// //link le style.css au plugin
-// function register_admin_style() {
-//     wp_register_style( 'admin_style', plugins_url('/assets/style.css', __FILE__), false, '1.0.0', 'all' );
-//     wp_enqueue_style( 'admin_style' );
-// }
-// add_action( 'admin_init', 'register_admin_style' );
 include_once('src/form.php');
 
 // Récupérer le nom de la table
@@ -61,6 +55,13 @@ add_action('admin_menu', function() {
         null
     );
 });
+
+//link le style au plugin
+function register_style() {
+    wp_register_style( 'style', plugins_url('/assets/style.css', __FILE__), false, '1.0.0', 'all' );
+    wp_enqueue_style( 'style' );
+}
+add_action( 'admin_init', 'register_style' );
 
 
 

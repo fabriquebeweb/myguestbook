@@ -1,14 +1,15 @@
 <?
-class hstngr_widget extends WP_Widget {
+include_once('send.php');
+class custom_widget extends WP_Widget {
     
     function __construct() {
         parent::__construct(
             // widget ID
-            'hstngr_widget',
+            'custom_widget',
             // widget name
-            __('Hostinger Sample Widget', ' hstngr_widget_domain'),
+            __('Guest Book Widget', ' custom_widget_domain'),
             // widget description
-            array( 'description' => __( 'Hostinger Widget Tutorial', 'hstngr_widget_domain' ), )
+            array( 'description' => __( 'guest book to help rating a restaurant', 'custom_widget_domain' ), )
         );
     }
 
@@ -16,24 +17,21 @@ class hstngr_widget extends WP_Widget {
         $title = apply_filters( 'widget_title', $instance['title'] );
         echo $args['before_widget'];
         //if title is present
-        if ( ! empty( $title ) )
+        if (!empty( $title )) {
             echo $args['before_title'] . $title . $args['after_title'];
-        //output
-        echo __( 'Greetings from Hostinger.com!', 'hstngr_widget_domain' );
+        }
+        ?>
+            <form action="" method="post">
+                <div>
+                    <H4 for="message">Thx, for rating the restaurant !</H4>
+                    <input name="message" type="text" placeholder="Enter your message..."/> <br>
+                    <input name="name" type="text" placeholder="Enter your name..."/> <br>
+                </div> 
+                <button type="submit">Send</button>
+            </form> <br>
+        <?
+        echo __( 'Greets to BeWeb', 'custom_widget_domain' );
         echo $args['after_widget'];
-    }
-
-    public function form( $instance ) {
-        if ( isset( $instance[ 'title' ] ) )
-            $title = $instance[ 'title' ];
-        else
-            $title = __( 'Default Title', 'hstngr_widget_domain' );
-    ?>
-        <p>
-            <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
-            <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
-        </p>
-    <?
     }
 
     public function update( $new_instance, $old_instance ) {
@@ -43,7 +41,7 @@ class hstngr_widget extends WP_Widget {
     }
 }
 
-function hstngr_register_widget() {
-    register_widget( 'hstngr_widget' );
+function widget_register() {
+    register_widget( 'custom_widget' );
 }
-add_action( 'widgets_init', 'hstngr_register_widget' );
+add_action( 'widgets_init', 'widget_register' );
