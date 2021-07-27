@@ -12,6 +12,8 @@ Version: 1
 Author URI: ∞∞∞∞∞∞∞∞∞∞∞∞∞
 */
 
+
+
 // Récupérer le nom de la table
 function getTableName() {
     global $wpdb;
@@ -53,3 +55,9 @@ add_action('admin_menu', function() {
         null
     );
 });
+
+//include src
+
+include(plugin_dir_path(__FILE__) . 'src/mgbwidget.php');
+
+
