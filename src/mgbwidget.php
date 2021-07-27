@@ -13,7 +13,7 @@ class Mgbwidget extends WP_Widget {
         echo $args['before_title'] . $title . $args['after_title'];
         
         // This is where you run the code and display the output
-        echo __( 'Hello, World! ', 'wpb_widget_domain' );
+        // echo __( 'Hello, World! ', 'wpb_widget_domain' );
         getMessage();
         echo $args['after_widget'];
 
@@ -46,11 +46,13 @@ function getMessage() {
     $messages = $wpdb->get_results( $sql );
     if( $messages ) { 
       foreach( $messages as $message ) { 
-        echo '<p> ' . $message->name . ' ' . $message->message.' </p>';
-     
-      }
+        echo    '<div style="border: 1px solid grey; padding-left: 2em;">
+                <p> <strong> nom:  </strong>' . $message->name . '</p> 
+                <p> <strong> message: </strong> ' . $message->message.' </p> 
+                <p> <strong> date: </strong> ' . $message->time.' </p>
+                </div>';
+      }   
 }
-
 }
 
 
