@@ -1,55 +1,20 @@
 <?php
+
 /**
  * @package MyGuestBook
  * @version 1
+ * Plugin Name: MyGuestBook
+ * Plugin URI: https://wordpress.org/plugins/myguestbook/
+ * Description: Rajoute un section livre d'or qui permet au client de laisser un commentaire et une note, attribué au restaurant
+ * Author: Yohan Beneito, Sidney Carlos, Raphaël Cima, Valentin Creuillenet, Alexandre Labsi, Jonathan Littardi, Maïalen Watrigant
  */
-/*
-Plugin Name: MyGuestBook
-Plugin URI: https://wordpress.org/plugins/myguestbook/
-Description: Rajoute un section livre d'or qui permet au client de laisser un commentaire et une note, attribué au restaurant
-Author: Yohan Beneito, Sidney Carlos, Raphaël Cima, Valentin Creuillenet, Alexandre Labsi, Jonathan Littardi, Maïalen Watrigant
-Version: 1
-Author URI: ∞∞∞∞∞∞∞∞∞∞∞∞∞
-*/
 
-// Récupérer le nom de la table
-function getTableName() {
-    global $wpdb;
+require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
+use MyGuestBook\Plugin;
 
-    return $wpdb->prefix . 'myguestbook';
-}
+// Activation
+register_activation_hook( __FILE__, function() { Plugin::activate(); } );
 
-// Créer la table en BDD
-function db_create() {
-    global $wpdb;
-
-    $table_name = getTableName();
-    $charset_collate = $wpdb->get_charset_collate();
-
-    $sql = "CREATE TABLE $table_name (
-    id int NOT NULL AUTO_INCREMENT,
-    message text NOT NULL,
-    name tinytext,
-    time datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    PRIMARY KEY  (id)
-    ) $charset_collate;";
-
-    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-    dbDelta( $sql );
-}
-
-// Appels lors de l'activation du plugin
-register_activation_hook( __FILE__, 'db_create' );
-
-// Crée et ajoute le menu à l'interface admin
-add_action('admin_menu', function() {
-    add_menu_page(
-        'MyGuestBook Settings',
-        'MyGuestBook',
-        'manage_options',
-        'myguestbook',
-        '',
-        'dashicons-awards',
-        null
-    );
-});
+// Évènements
+add_action('plugins_loaded', function() { Plugin::load(); });
+add_action('admin_menu', function() { Plugin::admin(); });

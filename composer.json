@@ -1,0 +1,9 @@
+{
+    "name": "root/myguestbook",
+    "autoload": {
+        "psr-4": {
+            "MyGuestBook\\": "src/"
+        }
+    },
+    "require": {}
+}
