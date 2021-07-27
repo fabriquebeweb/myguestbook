@@ -11,10 +11,6 @@ class Page
     public static function create()
     {
         if ( ! current_user_can( 'activate_plugins' ) ) return;
-
-        // global $wpdb;
-    
-        // if ( null === $wpdb->get_row( "SELECT post_name FROM {$wpdb->prefix}posts WHERE post_name = 'new-page-slug'", 'ARRAY_A' ) ) {
         
         $current_user = wp_get_current_user();
 
