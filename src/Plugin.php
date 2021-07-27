@@ -17,7 +17,21 @@ class Plugin
 
     public static function admin()
     {
-        
+        // Crée et ajoute le menu à l'interface admin
+        add_menu_page(
+            'MyGuestBook Settings',
+            'MyGuestBook',
+            'manage_options',
+            'myguestbook',
+            '',
+            'dashicons-awards',
+            null
+        );
+    }
+
+    public static function widgets()
+    {
+        register_widget( new MGB_Widget() );
     }
 
 }
