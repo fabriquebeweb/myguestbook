@@ -1,0 +1,14 @@
+.mgb_widget_rating {
+    background: linear-gradient(to right, #d4c77d, #FCF6BA, #ddd086, #FBF5B7, #c9b36c);
+    border: 1px solid #634A1C;
+    padding: 1em;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.mgb_widget_field_container {
+    width: 100%;
+    margin: 0 0 1em 0;
+}
