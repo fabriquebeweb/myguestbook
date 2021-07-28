@@ -87,7 +87,6 @@ class Admin
                 <li><strong>« MyGuestBook List »</strong> : Liste tous les messages.</li>
                 <li><strong>« MyGuestBook Form »</strong> : Permet à l’utilisateur de créer un nouveau message.</li>
             </ul>
-
             <div>
                 <img src="/wp-content/plugins/myguestbook/assets/images/Webp.net-resizeimage.png" alt="widgets"></img>
             </div>
