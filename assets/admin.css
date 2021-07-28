@@ -1,0 +1,35 @@
+.mgb_admin_rating {
+    display: flex; justify-content: space-between;
+    border: 1px solid grey;
+    border-radius: 3em;
+    padding: 2em;
+    margin: 1em 3em 1em 3em;
+}
+
+.mgb_admin_rating_on {
+    background: linear-gradient(to right, #D4C77DCC, #FCF6BACC, #DDD086CC, #FBF5B7CC, #C9B36CCC);
+}
+
+.mgb_admin_rating_off {
+    background: linear-gradient(to right, #D4C77D44, #FCF6BA44, #DDD08644, #FBF5B744, #C9B36C44);
+}
+
+.mgb_admin_rating_header {
+    text-align: center;
+    width: 66%;
+    padding: 0 1em 0 1em;
+}
+
+.mgb_admin_rating_footer {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+}
+
+.mgb_admin_rating_footer_btn {
+    background-color:#b48f4aaa;
+    border-radius: .5em;
+    outline: none;
+    border: none;
+    padding: .4em .8em .4em .8em;
+}

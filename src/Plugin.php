@@ -6,6 +6,7 @@ class Plugin
 {
 
     public const NAME = 'myguestbook';
+    public const SPACE = '\\MyGuestBook\\';
 
     /**
      * Plugin Activation hook

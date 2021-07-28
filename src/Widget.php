@@ -18,13 +18,16 @@ class Widget extends WP_Widget
         echo $args['before_widget'];
         if ( ! empty( $title ) ) echo $args['before_title'] . $title . $args['after_title'];
 
-        foreach(self::messages() as $message)
+        Asset::style('widget');
+
+        foreach(self::ratings() as $rating)
         {
-            echo '<div style="border: 1px solid grey; padding-left: 1em;">
-            <p> <strong> nom:  </strong>' . $message->name . '</p> 
-            <p> <strong> message: </strong> ' . $message->message.' </p> 
-            <p> <strong> date: </strong> ' . $message->time.' </p>
-            </div>';
+            echo <<<EOT
+                <article class="mgb_widget_rating">
+                    <h6>" $rating->message "</h6>
+                    <p><strong>$rating->author</strong>, $rating->time</p>
+                </article>
+            EOT;
         }
 
         echo $args['after_widget'];
@@ -48,10 +51,10 @@ class Widget extends WP_Widget
         <?php
     }
 
-    private static function messages()
+    private static function ratings()
     {
-        $messages = Database::list("SELECT * FROM ? WHERE state = true ORDER BY time DESC LIMIT 5");
-        return ($messages) ? $messages : [];
+        $ratings = Database::list("SELECT * FROM ? WHERE state = true ORDER BY time DESC LIMIT 5");
+        return ($ratings) ? array_map(Plugin::SPACE . 'Database::format', $ratings) : [];
     }
 
 }

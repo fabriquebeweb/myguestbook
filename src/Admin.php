@@ -34,20 +34,31 @@ class Admin
     }
 
     /**
-     * Display main menu and clear all messages notifications
+     * Display main menu and clear all ratings notifications
      */
     public static function menu()
     {
         Database::query("UPDATE ? SET notification = false WHERE id > 0");
-        
-        foreach(self::messages() as $message)
+        Asset::style('admin');
+
+        foreach(self::ratings() as $rating)
         {
+            $state = ($rating->state) ? 'mgb_admin_rating_on': 'mgb_admin_rating_off';
+            
             echo <<<EOT
-                <div style="border: 1px solid grey; padding: 1em; margin: 3em;">
-                    <p> <strong> NOTE: </strong> $message->message </p> 
-                    <p> <strong> NAME: </strong> $message->name </p> 
-                    <p> <strong> DATE: </strong> $message->time </p>
-                </div>
+                <article class="mgb_admin_rating ${state}">
+                    <header class="mgb_admin_rating_header">
+                        <h3> " $rating->message " </h3>
+                    </header>
+                    <aside>
+                        <p>Author: <strong> $rating->author </strong></p>
+                        <p>Date: <strong> $rating->time </strong></p>
+                    </aside>
+                    <footer class="mgb_admin_rating_footer">
+                        <input class="mgb_admin_rating_footer_btn" type="button" value="X">
+                        <input class="mgb_admin_rating_footer_btn" type="button" value="&#x2714">
+                    </footer>
+                </article>
             EOT;
         }
     }
@@ -57,6 +68,8 @@ class Admin
      */
     public static function about()
     {
+        Asset::style('admin');
+
         echo '<p>About page ( si tu lis ceci, prends le ticket prévu pour la page "À propos" sur Trello ! )</p>';
     }
 
@@ -66,10 +79,10 @@ class Admin
         return ($count) ? "<span class=\"awaiting-mod\">${count}</span>" : null;
     }
 
-    private static function messages()
+    private static function ratings()
     {
-        $messages = Database::list("SELECT * FROM ? ORDER BY time DESC LIMIT 5");
-        return ($messages) ? $messages : [];
+        $ratings = Database::list("SELECT * FROM ? ORDER BY time DESC");
+        return ($ratings) ? array_map(Plugin::SPACE . 'Database::format', $ratings) : [];
     }
 
 }

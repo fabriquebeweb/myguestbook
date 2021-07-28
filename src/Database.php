@@ -16,7 +16,7 @@ class Database
            "CREATE TABLE ? (
             id INT NOT NULL AUTO_INCREMENT,
             message TEXT NOT NULL,
-            name VARCHAR(20) DEFAULT 'Anonymous' NOT NULL,
+            author VARCHAR(20) DEFAULT 'Anonymous' NOT NULL,
             state boolean DEFAULT false NOT NULL,
             time datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
             notification boolean DEFAULT true NOT NULL,
@@ -28,13 +28,13 @@ class Database
     /**
      * Insert into database
      */
-    public static function insert(string $message, string $name = 'Anonymous')
+    public static function insert(string $message, string $author = 'Anonymous')
     {
-        self::db()->insert(self::name(), array('message' => $message, 'name' => $name));
+        self::db()->insert(self::name(), array('message' => $message, 'author' => $author));
     }
 
     /**
-     * Query a list of results
+     * Query alist of results
      */
     public static function list(string $sql, array $params = [])
     {
@@ -55,6 +55,15 @@ class Database
     public static function query(string $sql, array $params = [])
     {
         self::db()->query(self::prepare($sql, $params));
+    }
+
+    /**
+     * Format a Rating object
+     */
+    public static function format($obj)
+    {
+        $obj->time = date_format(date_create($obj->time), 'd/m/Y');
+        return $obj;
     }
 
     private static function db()

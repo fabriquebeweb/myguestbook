@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'MyGuestBook\\Admin' => $baseDir . '/src/Admin.php',
+    'MyGuestBook\\Asset' => $baseDir . '/src/Asset.php',
     'MyGuestBook\\Database' => $baseDir . '/src/Database.php',
     'MyGuestBook\\Page' => $baseDir . '/src/Page.php',
     'MyGuestBook\\Plugin' => $baseDir . '/src/Plugin.php',
