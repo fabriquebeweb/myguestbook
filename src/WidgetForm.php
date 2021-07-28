@@ -18,16 +18,19 @@ class WidgetForm extends WP_Widget
         if (!empty( $title )) echo $args['before_title'] . $title . $args['after_title'];
 
         Asset::style('widget');
+        Asset::script('HTTP');
 
         echo <<<EOT
-            <form class="mgb_widget_rating" method="post">
+            <form id="mgb_rating_form" class="mgb_widget_rating">
                 <section class="mgb_widget_field_container">
-                    <textarea rows="5" name="mgb_rating_message" type="text" placeholder="Message..." required></textarea>
-                    <input name="mgb_rating_author" type="text" placeholder="Name..."/>
+                    <textarea rows="5" class="mgb_rating_field" name="mgb_rating_message" placeholder="Message">c nul</textarea>
+                    <input class="mgb_rating_field" name="mgb_rating_author" type="text" value="Le connard" placeholder="Name">
                 </section>
-                <input type="submit" value="SEND">
+                <input id="mgb_rating_form_submit" type="submit" value="SEND">
             </form>
         EOT;
+
+        Asset::script('widget');
 
         echo $args['after_widget'];
     }

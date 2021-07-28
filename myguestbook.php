@@ -16,7 +16,10 @@ use MyGuestBook\Plugin;
 register_activation_hook( __FILE__, function() { Plugin::activate(); } );
 
 // Events
-add_action( 'parse_request', function() { if ( ! empty($_POST) ) Plugin::request(); }) ;
+add_action( 'wp_ajax_mgb_admin_rating_delete', function() { Plugin::request(); }) ;
+add_action( 'wp_ajax_mgb_admin_rating_toggle', function() { Plugin::request(); }) ;
+add_action( 'wp_ajax_nopriv_mgb_new_rating', function() { Plugin::request(); }) ;
+add_action( 'wp_ajax_mgb_new_rating', function() { Plugin::request(); }) ;
 add_action( 'widgets_init', function() { Plugin::widgets(); } );
 add_action( 'plugins_loaded', function() { Plugin::load(); } );
 add_action( 'admin_menu', function() { Plugin::admin(); } );
