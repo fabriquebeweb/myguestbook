@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package MyGuestBook
  * @version 1
