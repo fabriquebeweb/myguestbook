@@ -44,7 +44,7 @@ class Admin
         foreach(self::ratings() as $rating)
         {
             $state = ($rating->state) ? 'mgb_admin_rating_on': 'mgb_admin_rating_off';
-            
+
             echo <<<EOT
                 <article class="mgb_admin_rating ${state}">
                     <header class="mgb_admin_rating_header">

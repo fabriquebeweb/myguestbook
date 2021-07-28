@@ -28,9 +28,9 @@ class Database
     /**
      * Insert into database
      */
-    public static function insert(string $message, string $author = 'Anonymous')
+    public static function insert(array $params)
     {
-        self::db()->insert(self::name(), array('message' => $message, 'author' => $author));
+        self::db()->insert(self::name(), $params);
     }
 
     /**

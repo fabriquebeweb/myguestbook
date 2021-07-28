@@ -10,7 +10,9 @@ return array(
     'MyGuestBook\\Admin' => $baseDir . '/src/Admin.php',
     'MyGuestBook\\Asset' => $baseDir . '/src/Asset.php',
     'MyGuestBook\\Database' => $baseDir . '/src/Database.php',
+    'MyGuestBook\\Form' => $baseDir . '/src/Form.php',
     'MyGuestBook\\Page' => $baseDir . '/src/Page.php',
     'MyGuestBook\\Plugin' => $baseDir . '/src/Plugin.php',
-    'MyGuestBook\\Widget' => $baseDir . '/src/Widget.php',
+    'MyGuestBook\\WidgetForm' => $baseDir . '/src/WidgetForm.php',
+    'MyGuestBook\\WidgetList' => $baseDir . '/src/WidgetList.php',
 );

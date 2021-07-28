@@ -6,34 +6,32 @@ use WP_Widget;
 class WidgetForm extends WP_Widget
 {
 
-    public function __construct() 
+    function __construct()
     {
         parent::__construct('MyGuestBook_Widget_Form', 'MyGuestBook Form');
     }
 
-    public function widget($args, $instance)
+    public function widget( $args, $instance )
     {
-        $title = apply_filters('mgbwidget_title', $instance['title']);
-
+        $title = apply_filters( 'widget_title', $instance['title'] );
         echo $args['before_widget'];
-        if ( ! empty( $title ) ) echo $args['before_title'] . $title . $args['after_title'];
+        if (!empty( $title )) echo $args['before_title'] . $title . $args['after_title'];
 
         Asset::style('widget');
 
-        foreach(self::ratings() as $rating)
-        {
-            echo <<<EOT
-                <article class="mgb_widget_rating">
-                    <h6>" $rating->message "</h6>
-                    <p><strong>$rating->author</strong>, $rating->time</p>
-                </article>
-            EOT;
-        }
+        echo <<<EOT
+            <form class="mgb_widget_rating" method="post">
+                <section class="mgb_widget_field_container">
+                    <textarea rows="5" name="mgb_rating_message" type="text" placeholder="Message..." required></textarea>
+                    <input name="mgb_rating_author" type="text" placeholder="Name..."/>
+                </section>
+                <input type="submit" value="SEND">
+            </form>
+        EOT;
 
         echo $args['after_widget'];
     }
 
-    // Widget Backend 
     public function form( $instance )
     {
         if ( isset( $instance[ 'title' ] ) ) {
@@ -42,7 +40,6 @@ class WidgetForm extends WP_Widget
             $title = __( 'New title', 'wpb_widget_domain' );
         }
 
-        // Widget admin form
         ?>
         <p>
         <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label> 
@@ -51,10 +48,11 @@ class WidgetForm extends WP_Widget
         <?php
     }
 
-    private static function ratings()
+    public function update( $new_instance, $old_instance )
     {
-        $ratings = Database::list("SELECT * FROM ? WHERE state = true ORDER BY time DESC LIMIT 5");
-        return ($ratings) ? array_map(Plugin::SPACE . 'Database::format', $ratings) : [];
+        $instance = array();
+        $instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
+        return $instance;
     }
 
 }

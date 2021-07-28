@@ -17,7 +17,7 @@ class WidgetList extends WP_Widget
 
         echo $args['before_widget'];
         if ( ! empty( $title ) ) echo $args['before_title'] . $title . $args['after_title'];
-
+        
         Asset::style('widget');
 
         foreach(self::ratings() as $rating)
@@ -33,7 +33,6 @@ class WidgetList extends WP_Widget
         echo $args['after_widget'];
     }
 
-    // Widget Backend 
     public function form( $instance )
     {
         if ( isset( $instance[ 'title' ] ) ) {
@@ -42,7 +41,6 @@ class WidgetList extends WP_Widget
             $title = __( 'New title', 'wpb_widget_domain' );
         }
 
-        // Widget admin form
         ?>
         <p>
         <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label> 
