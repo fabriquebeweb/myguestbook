@@ -3,12 +3,12 @@
 namespace MyGuestBook;
 use WP_Widget;
 
-class Widget extends WP_Widget
+class WidgetList extends WP_Widget
 {
 
     public function __construct() 
     {
-        parent::__construct('MyGuestBook_Widget', 'MyGuestBook Widget');
+        parent::__construct('MyGuestBook_Widget_List', 'MyGuestBook List');
     }
 
     public function widget($args, $instance)

@@ -37,7 +37,8 @@ class Plugin
      */
     public static function widgets()
     {
-        register_widget( new Widget() );
+        register_widget( new WidgetList() );
+        register_widget( new WidgetForm() );
     }
 
 }

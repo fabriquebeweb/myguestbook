@@ -1,9 +1,10 @@
 .mgb_admin_rating {
     display: flex; justify-content: space-between;
-    border: 1px solid grey;
+    border: 1px solid #634A1C;
     border-radius: 3em;
     padding: 2em;
     margin: 1em 3em 1em 3em;
+    box-shadow: .1em .1em .5em #634A1C66;
 }
 
 .mgb_admin_rating_on {
@@ -23,7 +24,7 @@
 .mgb_admin_rating_footer {
     display: flex;
     flex-flow: column nowrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .mgb_admin_rating_footer_btn {
@@ -32,4 +33,5 @@
     outline: none;
     border: none;
     padding: .4em .8em .4em .8em;
+    box-shadow: .1em .1em .3em #634A1CDD;
 }
