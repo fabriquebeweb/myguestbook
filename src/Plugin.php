@@ -15,7 +15,6 @@ class Plugin
     public static function activate()
     {
         Database::create();
-        Page::create();
     }
 
     /**
@@ -46,9 +45,14 @@ class Plugin
      */
     public static function request()
     {
-        // if (isset($_POST['mgb_rating_message'])) Form::rating();
-        // if (isset($_POST['mgb_admin_rating'])) Form::admin();
-        Form::test();
+        switch ($_REQUEST['action']) {
+            case 'mgb_new_rating':
+                Rating::new(); break;
+            case 'mgb_admin_rating_delete':
+                Rating::delete(); break;
+            case 'mgb_admin_rating_toggle':
+                Rating::toggle(); break;
+        };
     }
 
 }

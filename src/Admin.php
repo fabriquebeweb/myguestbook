@@ -40,13 +40,15 @@ class Admin
     {
         Database::query("UPDATE ? SET notification = false WHERE id > 0");
         Asset::style('admin');
+        Asset::script('HTTP');
 
         foreach(self::ratings() as $rating)
         {
-            $state = ($rating->state) ? 'mgb_admin_rating_on': 'mgb_admin_rating_off';
+            $state_class = ($rating->state) ? 'mgb_admin_rating_on': 'mgb_admin_rating_off';
+            $state = ($rating->state) ? 'true' : 'false';
 
             echo <<<EOT
-                <article class="mgb_admin_rating ${state}">
+                <article id="$rating->id" class="mgb_admin_rating ${state_class}">
                     <header class="mgb_admin_rating_header">
                         <h3> " $rating->message " </h3>
                     </header>
@@ -55,12 +57,14 @@ class Admin
                         <p>Date: <strong> $rating->time </strong></p>
                     </aside>
                     <footer class="mgb_admin_rating_footer">
-                        <input class="mgb_admin_rating_footer_btn" type="button" value="X">
-                        <input class="mgb_admin_rating_footer_btn" type="button" value="&#x2714">
+                        <input class="mgb_admin_rating_footer_btn mgb_admin_rating_delete" type="button" value="X">
+                        <input name="${state}" class="mgb_admin_rating_footer_btn mgb_admin_rating_toggle" type="button" value="&#x2714">
                     </footer>
                 </article>
             EOT;
         }
+
+        Asset::script('admin');
     }
 
     /**
