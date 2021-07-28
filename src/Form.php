@@ -10,7 +10,7 @@ class Form
      */
     public static function rating()
     {  
-        if ( ! empty($_POST['mgb_rating_author']) ) Database::insert([
+        if ( ! empty($_POST['mgb_rating_message']) ) Database::insert([
             'message' => $_POST['mgb_rating_message'],
             'author' => self::author()
         ]);
@@ -23,8 +23,8 @@ class Form
 
     public static function test()
     {
-        print_r($_POST);
-        exit();
+        var_dump($_POST);
+        // exit();
     }
 
 }

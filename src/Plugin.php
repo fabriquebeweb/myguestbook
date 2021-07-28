@@ -46,8 +46,9 @@ class Plugin
      */
     public static function request()
     {
-        if (isset($_POST['mgb_rating_message'])) Form::rating();
+        // if (isset($_POST['mgb_rating_message'])) Form::rating();
         // if (isset($_POST['mgb_admin_rating'])) Form::admin();
+        Form::test();
     }
 
 }
