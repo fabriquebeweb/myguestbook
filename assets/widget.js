@@ -6,7 +6,10 @@ submit.addEventListener('click', event => {
     event.preventDefault()
 
     let url = ['/wp-admin/admin-ajax.php?action=mgb_new_rating']
-    inputs.forEach(input => url.push(`${input.name}=${input.value}`))
+    inputs.forEach(input => {
+        url.push(`${input.name}=${input.value}`)
+        input.value = null
+    })
 
     HTTP.post(url.join('&'), () => alert('Merci pour votre avis ! <3'))
 })

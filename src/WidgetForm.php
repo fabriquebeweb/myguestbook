@@ -23,8 +23,8 @@ class WidgetForm extends WP_Widget
         echo <<<EOT
             <form id="mgb_rating_form" class="mgb_widget_rating">
                 <section class="mgb_widget_field_container">
-                    <textarea rows="5" class="mgb_rating_field" name="mgb_rating_message" placeholder="Message">c nul</textarea>
-                    <input class="mgb_rating_field" name="mgb_rating_author" type="text" value="Le connard" placeholder="Name">
+                    <textarea rows="5" class="mgb_rating_field" name="mgb_rating_message" placeholder="Message"></textarea>
+                    <input class="mgb_rating_field" name="mgb_rating_author" type="text" placeholder="Name">
                 </section>
                 <input id="mgb_rating_form_submit" type="submit" value="SEND">
             </form>
