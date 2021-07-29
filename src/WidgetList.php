@@ -14,13 +14,14 @@ class WidgetList extends WP_Widget
     public function widget($args, $instance)
     {
         $title = apply_filters('mgbwidget_title', $instance['title']);
+        $rows = (int) apply_filters('mgbwidget_title', $instance['rows']);
 
         echo $args['before_widget'];
         if ( ! empty( $title ) ) echo $args['before_title'] . $title . $args['after_title'];
         
         Asset::style('widget');
 
-        foreach(self::ratings() as $rating)
+        foreach(self::ratings($rows) as $rating)
         {
             echo <<<EOT
                 <article class="mgb_widget_rating">
@@ -35,23 +36,31 @@ class WidgetList extends WP_Widget
 
     public function form( $instance )
     {
-        if ( isset( $instance[ 'title' ] ) ) {
-            $title = $instance[ 'title' ];
-        } else {
-            $title = __( 'New title', 'wpb_widget_domain' );
-        }
+        $title = esc_attr((isset($instance[ 'title' ])) ? $instance['title'] : __('My title', 'wpb_widget_domain'));
+        $num = esc_attr((isset($instance['num'])) ? $instance['num'] : __('', 'wpb_widget_domain'));
+        $title_label = _e('Title:');
+        $num_label = _e('Number (leave empty for all) :');
+        $title_name = $this->get_field_name('title');
+        $num_name = $this->get_field_name('num');
+        $title_id = $this->get_field_id('title');
+        $num_id = $this->get_field_id('num');
 
-        ?>
-        <p>
-        <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label> 
-        <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
-        </p>
-        <?php
+        echo <<<EOT
+            <p>
+                <label for="${title_id}">${title_label}</label> 
+                <input class="widefat" id="${title_id}" name="${title_name}" type="text" value="${title}">
+            </p>
+            <p>
+                <label for="${num_id}">${num_label}</label> 
+                <input class="widefat" id="${num_id}" name="${num_name}" type="text" value="${num}">
+            </p>
+        EOT;
     }
 
-    private static function ratings()
+    private static function ratings(int $rows = 0)
     {
-        $ratings = Database::list("SELECT * FROM ? WHERE state = true ORDER BY time DESC LIMIT 5");
+        $limit = ($rows) ? " LIMIT ${rows}" : '';
+        $ratings = Database::list("SELECT * FROM ? WHERE state = true ORDER BY time DESC" . $limit);
         return ($ratings) ? array_map(Plugin::SPACE . 'Database::format', $ratings) : [];
     }
 
