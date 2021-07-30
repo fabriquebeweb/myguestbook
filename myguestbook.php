@@ -1,7 +1,7 @@
 <?php
 /**
  * @package MyGuestBook
- * @version 1
+ * @version 2
  * Plugin Name: MyGuestBook
  * Plugin URI: https://wordpress.org/plugins/myguestbook/
  * Description: Rajoute un section livre d'or qui permet au client de laisser un commentaire et une note, attribué au restaurant
@@ -19,6 +19,8 @@ add_action( 'wp_ajax_mgb_admin_rating_delete', function() { Plugin::request(); }
 add_action( 'wp_ajax_mgb_admin_rating_toggle', function() { Plugin::request(); }) ;
 add_action( 'wp_ajax_nopriv_mgb_new_rating', function() { Plugin::request(); }) ;
 add_action( 'wp_ajax_mgb_new_rating', function() { Plugin::request(); }) ;
+add_action( 'admin_enqueue_scripts', function() { Plugin::assets(true); }) ;
+add_action( 'wp_enqueue_scripts', function() { Plugin::assets(false); }) ;
 add_action( 'widgets_init', function() { Plugin::widgets(); } );
 add_action( 'plugins_loaded', function() { Plugin::load(); } );
 add_action( 'admin_menu', function() { Plugin::admin(); } );

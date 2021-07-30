@@ -41,6 +41,16 @@ class Plugin
     }
 
     /**
+     * Styles loading hook
+     */
+    public static function assets(bool $admin)
+    {
+        Asset::styles($admin);
+        Asset::script('HTTP');
+        Asset::scripts($admin);
+    }
+
+    /**
      * HTTP Requests
      */
     public static function request()

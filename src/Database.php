@@ -63,6 +63,7 @@ class Database
     public static function format($obj)
     {
         $obj->time = date_format(date_create($obj->time), 'd/m/Y');
+        $obj->message = stripslashes($obj->message);
         return $obj;
     }
 

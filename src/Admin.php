@@ -39,8 +39,6 @@ class Admin
     public static function menu()
     {
         Database::query("UPDATE ? SET notification = false WHERE id > 0");
-        Asset::style('admin');
-        Asset::script('HTTP');
 
         foreach(self::ratings() as $rating)
         {
@@ -63,8 +61,6 @@ class Admin
                 </article>
             EOT;
         }
-
-        Asset::script('admin');
     }
 
     /**
@@ -72,7 +68,7 @@ class Admin
      */
     public static function about()
     {
-        Asset::style('admin');
+        $widgets = Asset::image('widgets');
 
         echo <<<EOT
             <h1>A propos</h1>
@@ -83,12 +79,11 @@ class Admin
             Cette dernière accueillera tous les messages laissés par les clients depuis le widget.</p>
             <h3>Les widgets : </h3>
             <ul>
-                <li><strong>« MyGuestBook Limit 5 »</strong> : Liste les 5 derniers messages.</li>
                 <li><strong>« MyGuestBook List »</strong> : Liste tous les messages.</li>
                 <li><strong>« MyGuestBook Form »</strong> : Permet à l’utilisateur de créer un nouveau message.</li>
             </ul>
             <div>
-                <img src="/wp-content/plugins/myguestbook/assets/images/Webp.net-resizeimage.png" alt="widgets"></img>
+                <img src="${widgets}" alt="widgets"></img>
             </div>
         EOT;
     }
