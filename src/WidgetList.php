@@ -14,12 +14,12 @@ class WidgetList extends WP_Widget
     public function widget($args, $instance)
     {
         $title = apply_filters('mgbwidget_title', $instance['title']);
-        $rows = (int) apply_filters('mgbwidget_title', $instance['rows']);
+        $num = (int) apply_filters('mgbwidget_title', $instance['num']);
 
         echo $args['before_widget'];
         if ( ! empty( $title ) ) echo $args['before_title'] . $title . $args['after_title'];
         
-        foreach(self::ratings($rows) as $rating)
+        foreach(self::ratings($num) as $rating)
         {
             echo <<<EOT
                 <article class="mgb_widget_rating">
