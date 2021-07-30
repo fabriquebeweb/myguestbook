@@ -9,10 +9,11 @@ class Rating
      * Insert new rating in DB
      */
     public static function new()
-    {  
+    {
         if ( ! empty($_REQUEST['mgb_rating_message']) ) Database::insert([
             'message' => $_REQUEST['mgb_rating_message'],
-            'author' => self::author()
+            'author' => self::author(),
+            'state' => (!json_decode($_REQUEST['mgb_rating_moderation'])) ? true : false
         ]);
     }
 

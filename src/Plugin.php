@@ -5,7 +5,7 @@ namespace MyGuestBook;
 class Plugin
 {
 
-    public const VERSION = '1.0.0';
+    public const VERSION = '1';
     public const NAME = 'myguestbook';
     public const SPACE = '\\MyGuestBook\\';
 
@@ -38,6 +38,16 @@ class Plugin
     {
         register_widget( new WidgetList() );
         register_widget( new WidgetForm() );
+    }
+
+    /**
+     * Styles loading hook
+     */
+    public static function assets(bool $admin)
+    {
+        Asset::styles($admin);
+        Asset::script('HTTP');
+        Asset::scripts($admin);
     }
 
     /**

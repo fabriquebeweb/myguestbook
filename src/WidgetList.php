@@ -19,8 +19,6 @@ class WidgetList extends WP_Widget
         echo $args['before_widget'];
         if ( ! empty( $title ) ) echo $args['before_title'] . $title . $args['after_title'];
         
-        Asset::style('widget');
-
         foreach(self::ratings($rows) as $rating)
         {
             echo <<<EOT
@@ -34,12 +32,10 @@ class WidgetList extends WP_Widget
         echo $args['after_widget'];
     }
 
-    public function form( $instance )
+    public function form($instance)
     {
-        $title = esc_attr((isset($instance[ 'title' ])) ? $instance['title'] : __('My title', 'wpb_widget_domain'));
+        $title = esc_attr((isset($instance['title'])) ? $instance['title'] : __('My title', 'wpb_widget_domain'));        
         $num = esc_attr((isset($instance['num'])) ? $instance['num'] : __('', 'wpb_widget_domain'));
-        $title_label = _e('Title:');
-        $num_label = _e('Number (leave empty for all) :');
         $title_name = $this->get_field_name('title');
         $num_name = $this->get_field_name('num');
         $title_id = $this->get_field_id('title');
@@ -47,11 +43,11 @@ class WidgetList extends WP_Widget
 
         echo <<<EOT
             <p>
-                <label for="${title_id}">${title_label}</label> 
+                <label for="${title_id}">Title</label> 
                 <input class="widefat" id="${title_id}" name="${title_name}" type="text" value="${title}">
             </p>
             <p>
-                <label for="${num_id}">${num_label}</label> 
+                <label for="${num_id}">Number ( leave empty for all )</label> 
                 <input class="widefat" id="${num_id}" name="${num_name}" type="text" value="${num}">
             </p>
         EOT;
