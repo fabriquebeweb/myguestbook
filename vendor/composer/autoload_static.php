@@ -27,6 +27,7 @@ class ComposerStaticInitd925f220e4560ad4baea78664690e20f
         'MyGuestBook\\Database' => __DIR__ . '/../..' . '/src/Database.php',
         'MyGuestBook\\Plugin' => __DIR__ . '/../..' . '/src/Plugin.php',
         'MyGuestBook\\Rating' => __DIR__ . '/../..' . '/src/Rating.php',
+        'MyGuestBook\\Scripts' => __DIR__ . '/../..' . '/src/Scripts.php',
         'MyGuestBook\\WidgetForm' => __DIR__ . '/../..' . '/src/WidgetForm.php',
         'MyGuestBook\\WidgetList' => __DIR__ . '/../..' . '/src/WidgetList.php',
     );

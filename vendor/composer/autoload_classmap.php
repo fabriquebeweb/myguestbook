@@ -12,6 +12,7 @@ return array(
     'MyGuestBook\\Database' => $baseDir . '/src/Database.php',
     'MyGuestBook\\Plugin' => $baseDir . '/src/Plugin.php',
     'MyGuestBook\\Rating' => $baseDir . '/src/Rating.php',
+    'MyGuestBook\\Scripts' => $baseDir . '/src/Scripts.php',
     'MyGuestBook\\WidgetForm' => $baseDir . '/src/WidgetForm.php',
     'MyGuestBook\\WidgetList' => $baseDir . '/src/WidgetList.php',
 );

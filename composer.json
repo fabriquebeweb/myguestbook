@@ -5,5 +5,9 @@
             "MyGuestBook\\": "src/"
         }
     },
+    "scripts": {
+        "load": "@composer dumpautoload -o",
+        "build": "\\MyGuestBook\\Scripts::zip"
+    },
     "require": {}
 }
