@@ -5,7 +5,7 @@ namespace MyGuestBook;
 class Plugin
 {
 
-    public const VERSION = '1';
+    public const VERSION = 2;
     public const NAME = 'myguestbook';
     public const SPACE = '\\MyGuestBook\\';
 

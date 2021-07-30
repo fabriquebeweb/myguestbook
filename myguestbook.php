@@ -1,7 +1,7 @@
 <?php
 /**
  * @package MyGuestBook
- * @version 1
+ * @version 2
  * Plugin Name: MyGuestBook
  * Plugin URI: https://wordpress.org/plugins/myguestbook/
  * Description: Rajoute un section livre d'or qui permet au client de laisser un commentaire et une note, attribué au restaurant
